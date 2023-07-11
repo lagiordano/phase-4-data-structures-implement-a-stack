@@ -9,11 +9,8 @@ class Stack
     end
 
     def push value 
-        if stack.length == limit
-            raise Exception.new "Stack Overflow"
-        else
-            stack.push value
-        end
+        raise 'Stack Overflow' if full? 
+        stack.push value
     end
 
     def pop 
@@ -21,7 +18,7 @@ class Stack
     end
 
     def peek 
-        stack[stack.length - 1]
+        stack.last
     end
 
     def size 
@@ -29,11 +26,11 @@ class Stack
     end
 
     def empty? 
-        stack.length == 0 ? true : false
+        stack.empty?
     end
 
     def full?
-        stack.length == limit ? true : false 
+        limit && stack.size == limit 
     end
 
     def search target
